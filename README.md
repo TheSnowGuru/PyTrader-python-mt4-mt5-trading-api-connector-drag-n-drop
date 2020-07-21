@@ -10,7 +10,7 @@ Aamazing capabilities like download bar data & creating a live feed for your str
 Enjoy.
 
 ## Drag & Drop Python Connector for MT5
-## Crazy and growing list of features:
+## Growing list of features:
 * Python login to Metatrader5 Terminal
 * Python Connection keep alive function
 * Get MT5 Account Info→ Python client
