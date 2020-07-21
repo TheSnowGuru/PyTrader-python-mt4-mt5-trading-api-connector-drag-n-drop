@@ -27,7 +27,7 @@ Enjoy.
 * MT5 → Python Get bar data [date, open, low, high, close, vol]
 * MT5 → Python Get last X ticks array[date, bid, ask, last,vol]
 * MT5 → Python Get last X bars array[date, open, low, high, close, vol]
-* MT5 → Python Get indicator data from MT5 to your scritp - coming soon!
+* MT5 → Python Get indicator data from MT5 to your scrit - coming soon!
 
 # Mt5 python 
 ## installation flow:
