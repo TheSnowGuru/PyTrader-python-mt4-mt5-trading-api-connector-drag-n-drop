@@ -38,11 +38,9 @@ Inline-style:
 See documentation [here](https://github.com/TheSnowGuru/PyTrader-python-mt5-trading-api-connector/blob/master/Pytrader_API_for_MT4_and_MT5.pdf)
 
 
-Github users get 20% off! 
-use coupon **Github**   -  _only 100 discount coupons left_
-
-
-[<img src="mtt4button.jpg">](https://gum.co/mt4python)
-
 ## Python MT5 EA
-Clone & Test Now :)  - 7 days trial, Enjoy!
+Clone & Test Now :)  - [Get 7 days trial, Enjoy](https://gum.co/mt5python)
+Github users get 20% off! 
+
+use coupon **Github**   - _only 100 discount coupons left_ 
+[Get it Now](https://gum.co/mt5python)
