@@ -11,13 +11,13 @@ Enjoy.
 
 ## Drag & Drop Python Connector for MT5
 ## Crazy and growing list of features:
-* Python login to Metatrader4 Terminal
-* Python Connection keep alive
-* Get MT4 Account Info→ Python client
-* Python Client Open New Orders → MT4
- (Verify the sending, and verifying the receiving the order ,in MetaTrader 4)
-* Python Client can Change(take profit,stop loss) /Cancel/Open Orders → MT4
-* Python Close/Partly Close Positions → MT4
+* Python login to Metatrader5 Terminal
+* Python Connection keep alive function
+* Get MT5 Account Info→ Python client
+* Python Client Open New Orders → MT5
+ (Verify the sending, and verifying the receiving the order ,in MetaTrader5)
+* Python Client can Change(take profit,stop loss) /Cancel/Open Orders → MT5
+* Python Close/Partly Close Positions → MT5
 * MT5 Execution info→ Python client
 * MT5 → Python Get all Open orders & Positions
 * MT5 → Python Get static account information
@@ -32,10 +32,10 @@ Enjoy.
 # Mt5 python 
 ## installation flow:
 Inline-style: 
-![alt text](https://github.com/TheSnowGuru/python-metatrader4-ea-connecor/blob/master/Python_MT4_Bridge_flow.png  "Logo Title Text 1")
+![alt text](https://github.com/TheSnowGuru/PyTrader-python-mt5-trading-api-connector/blob/master/Python_MT4_Bridge_flow.png  "Logo Title Text 1")
 
 ## myLib documentation
-See documentation [here](https://github.com/TheSnowGuru/PyTrader-python-mt5-trading-api-connector/blob/master/MT_Socket_Connector.pdf)
+See documentation [here](https://github.com/TheSnowGuru/PyTrader-python-mt5-trading-api-connector/blob/master/Pytrader_API_for_MT4_and_MT5.pdf)
 
 
 Github users get 20% off! 
