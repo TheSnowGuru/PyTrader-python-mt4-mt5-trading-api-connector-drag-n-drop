@@ -1,4 +1,6 @@
-## PyTrader  - Drag & Drop Python API Connector for MT5
+## PyTrader  - Drag & Drop MT5 Python API Connector for Metatrader
+![PyTrader](https://github.com/TheSnowGuru/PyTrader-python-mt5-trading-api-connector/blob/master/PyTrader-icon.png)
+
 Documentation for connecting Metatrader 5 with Python with a simple drag and drop EA.
 A full suited solution and fully tested and fast and efficiant. 
 
