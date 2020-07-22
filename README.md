@@ -31,7 +31,7 @@ Enjoy.
 * MT5 → Python Get last X bars array[date, open, low, high, close, vol]
 * MT5 → Python Get indicator data from MT5 to your script - coming soon!
 
-# Mt5 python 
+# MT5 python 
 ## installation flow:
 ![alt text](https://github.com/TheSnowGuru/PyTrader-python-mt5-trading-api-connector/blob/master/Pytrader_API_installation_MT5.png  "Installation flow")
 
