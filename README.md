@@ -31,7 +31,6 @@ Enjoy.
 
 # Mt5 python 
 ## installation flow:
-Inline-style: 
 ![alt text](https://github.com/TheSnowGuru/PyTrader-python-mt5-trading-api-connector/blob/master/Pytrader_API_installation_MT5.png  "Installation flow")
 
 ## myLib documentation
