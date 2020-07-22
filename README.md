@@ -32,7 +32,7 @@ Enjoy.
 # Mt5 python 
 ## installation flow:
 Inline-style: 
-![alt text](https://github.com/TheSnowGuru/PyTrader-python-mt5-trading-api-connector/blob/master/Python_MT4_Bridge_flow.png  "Logo Title Text 1")
+![alt text](https://github.com/TheSnowGuru/PyTrader-python-mt5-trading-api-connector/blob/master/Pytrader_API_installation_MT5.png  "Installation flow")
 
 ## myLib documentation
 See documentation [here](https://github.com/TheSnowGuru/PyTrader-python-mt5-trading-api-connector/blob/master/Pytrader_API_for_MT4_and_MT5.pdf)
