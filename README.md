@@ -2,13 +2,13 @@
 ![PyTrader](https://github.com/TheSnowGuru/PyTrader-python-mt5-trading-api-connector/blob/master/PyTrader-icon-small.png)
 
 Documentation for connecting Metatrader 5 with Python with a simple drag and drop EA.
-A full suited solution and fully tested and fast and efficiant. 
+A full suited solution and fully tested and fast and efficient. 
 
 # Python MT5 ea connecor
 Easier more than ever before!
 Connecting Metatrader5 with Python strategies with this simple drag and drop EA has never been so easy!
 A full & fast solution tested with real trading.
-Aamazing capabilities like download bar data & creating a live feed for your strategies with 1 line of code. 
+Amazing capabilities like download bar data & creating a live feed for your strategies with 1 line of code. 
 Enjoy.
 
 ## Drag & Drop Python Connector for MT5
