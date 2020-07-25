@@ -339,6 +339,12 @@ class Pytrader_API:
                     ticks = np.sort(ticks)
                     self.command_OK = True    
                     return ticks
+            
+            if (itail == 0):
+                ticks = np.sort(ticks)
+                self.command_OK = True    
+                return ticks
+            
             if (itail > 0):
                 self.command = 'F021#3#' + self.get_broker_instrument_name(self.instrument_name_universal) + '#' + str(iloop*self.max_ticks) + '#' + str(itail) + '#'
                 ok, dataString = self.send_command(self.command)
