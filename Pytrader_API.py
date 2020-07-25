@@ -493,6 +493,7 @@ class Pytrader_API:
                     rates = np.sort(rates)
                     self.command_OK = True    
                     return rates
+            
             if (itail == 0):
                 rates = np.sort(rates)
                 self.command_OK = True    
