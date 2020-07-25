@@ -493,7 +493,11 @@ class Pytrader_API:
                     rates = np.sort(rates)
                     self.command_OK = True    
                     return rates
-
+            if (itail == 0):
+                rates = np.sort(rates)
+                self.command_OK = True    
+                return rates
+            
             if (itail > 0):
                 self.command = 'F042#4#' + self.get_broker_instrument_name(self.instrument_name_universal) + '#' + str(timeframe) + '#' + str(iloop*self.max_bars) + '#' + str(itail) + '#'
                 ok, dataString = self.send_command(self.command)
