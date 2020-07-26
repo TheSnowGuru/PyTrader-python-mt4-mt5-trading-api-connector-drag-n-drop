@@ -6,7 +6,6 @@ import configparser
 import math
 from datetime import datetime
 
-CONFIG_FILE= "Instrument.conf"
 
 class Pytrader_API:
 
