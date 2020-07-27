@@ -22,7 +22,7 @@ class Pytrader_API:
         self.command_OK: bool = False
         self.command_return_error: str = ''
         self.debug: bool = False
-        self.version: str = '0.85'
+        self.version: str = '1.02'
         self.max_bars: int = 5000
         self.max_ticks: int = 5000
         self.timeout_value: int = 60;
