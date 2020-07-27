@@ -45,3 +45,8 @@ Github users get 20% off!
 
 use coupon **Github**   - _only 100 discount coupons left_ 
 [Get it Now](https://gum.co/mt5python)
+
+
+p.s.
+## Python MT4 EA 
+can be found [here](https://github.com/TheSnowGuru/PyTrader-python-mt4-trading-api-connector)
