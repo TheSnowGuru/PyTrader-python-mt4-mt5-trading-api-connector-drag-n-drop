@@ -39,6 +39,11 @@ Enjoy.
 See documentation [here](https://github.com/TheSnowGuru/PyTrader-python-mt5-trading-api-connector/blob/master/Pytrader_API%20for%20MT4%20and%20MT5.pdf)
 
 
+## Linux installation: 
+Here is aready docker + Wine:  [here](https://hub.docker.com/r/scottyhardy/docker-wine/)
+Install metatrader through wine and run your strategies on linux.Enjoy.
+
+
 ## Python MT5 EA
 Clone & Test Now :)  - [Get 7 days trial, Enjoy](https://gum.co/mt5python)
 Github users get 20% off! 
