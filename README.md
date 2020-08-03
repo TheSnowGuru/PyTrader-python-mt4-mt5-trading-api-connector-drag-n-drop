@@ -40,7 +40,7 @@ See documentation [here](https://github.com/TheSnowGuru/PyTrader-python-mt5-trad
 
 
 ## Linux installation: 
-Here is aready docker + Wine:  [here](https://hub.docker.com/r/scottyhardy/docker-wine/).
+Here is aready docker + Wine: [here](https://hub.docker.com/r/scottyhardy/docker-wine/).
 Install metatrader through wine and run your strategies on linux.
 
 
