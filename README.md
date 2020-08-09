@@ -51,7 +51,7 @@ Here is a ready docker + Wine:   [here](https://hub.docker.com/r/scottyhardy/doc
 ## Python MT5 EA
 Clone & Test Now :)  - [Enjoy](https://gum.co/mt5python)
 
-## Python MT5 EA
+## Python MT4 EA
 Clone & Test Now :)  - [Enjoy](https://gum.co/mt4python)
 
 
