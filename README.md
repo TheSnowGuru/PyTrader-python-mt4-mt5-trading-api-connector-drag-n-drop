@@ -1,17 +1,17 @@
-## PyTrader  - Drag & Drop MT5 Python API Connector for Metatrader
+## PyTrader  - Drag & Drop MT4 & MT5  Python API Connector for Metatrader
 ![PyTrader](https://github.com/TheSnowGuru/PyTrader-python-mt5-trading-api-connector/blob/master/PyTrader-icon-small.png)
 
 Documentation for connecting Metatrader 5 with Python with a simple drag and drop EA.
 A full suited solution and fully tested and fast and efficient. 
 
-# Python MT5 EA connecor
+# Python MT4 & MT5 EA connecor
 Easier more than ever before!
 Connecting Metatrader5 with Python strategies with this simple drag and drop EA has never been so easy!
 A full & fast solution tested with real trading.
 Amazing capabilities like download bar data & creating a live feed for your strategies with 1 line of code. 
 Enjoy.
 
-## Drag & Drop Python Connector for MT5
+## Drag & Drop Python Connector for MT4 & MT5 
 ## Growing list of features:
 * Python login to Metatrader5 Terminal
 * Python Connection keep alive function
@@ -35,6 +35,10 @@ Enjoy.
 ## installation flow:
 ![alt text](https://github.com/TheSnowGuru/PyTrader-python-mt5-trading-api-connector/blob/master/Pytrader_API_installation_MT5.png  "Installation flow")
 
+# MT4 python 
+## installation flow:
+![alt text](https://github.com/TheSnowGuru/PyTrader-python-mt5-trading-api-connector/blob/master/Pytrader_API_installation_MT4.png  "Installation flow")
+
 ## myLib documentation
 See documentation [here](https://github.com/TheSnowGuru/PyTrader-python-mt4-mt5-trading-api-connector-drag-n-drop/blob/master/documentation%20Pytrader_API%20for%20MT5.md)
 
@@ -47,7 +51,9 @@ Here is a ready docker + Wine:   [here](https://hub.docker.com/r/scottyhardy/doc
 ## Python MT5 EA
 Clone & Test Now :)  - [Enjoy](https://gum.co/mt5python)
 
-use coupon **Github**   - _only 100 discount coupons left_ 
-[Get it Now](https://gum.co/mt5python)
+## Python MT5 EA
+Clone & Test Now :)  - [Enjoy](https://gum.co/mt4python)
+
+
 
 
