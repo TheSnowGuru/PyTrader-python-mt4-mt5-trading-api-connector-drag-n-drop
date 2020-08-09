@@ -36,7 +36,7 @@ Enjoy.
 ![alt text](https://github.com/TheSnowGuru/PyTrader-python-mt5-trading-api-connector/blob/master/Pytrader_API_installation_MT5.png  "Installation flow")
 
 ## myLib documentation
-See documentation [here](https://github.com/TheSnowGuru/PyTrader-python-mt5-trading-api-connector/blob/master/Pytrader_API%20for%20MT4%20and%20MT5.pdf)
+See documentation [here](https://github.com/TheSnowGuru/PyTrader-python-mt4-mt5-trading-api-connector-drag-n-drop/blob/master/documentation%20Pytrader_API%20for%20MT5.md)
 
 
 ## Linux installation: 
