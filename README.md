@@ -45,13 +45,9 @@ Here is a ready docker + Wine:   [here](https://hub.docker.com/r/scottyhardy/doc
 
 
 ## Python MT5 EA
-Clone & Test Now :)  - [Get 7 days trial, Enjoy](https://gum.co/mt5python)
-Github users get 20% off! 
+Clone & Test Now :)  - [Enjoy](https://gum.co/mt5python)
 
 use coupon **Github**   - _only 100 discount coupons left_ 
 [Get it Now](https://gum.co/mt5python)
 
 
-p.s.
-## Python MT4 EA 
-can be found [here](https://github.com/TheSnowGuru/PyTrader-python-mt4-trading-api-connector)
