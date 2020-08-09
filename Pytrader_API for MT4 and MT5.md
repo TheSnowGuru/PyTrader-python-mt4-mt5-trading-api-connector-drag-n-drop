@@ -347,7 +347,7 @@ information
 ### 16. Get all orders
 
 ## get all orders(pendings)
-AllOrders = MT.Get_all_orders()
+`AllOrders = MT.Get_all_orders()`
 
 AllOrders = data frame with the following info(only pending orders):
 
@@ -563,7 +563,7 @@ connection time a lookup dictionary is passed as parameter. In here the python s
 translation between general instrument names and typical broker instrument names. This will make
 the application more general. A nice way is to do by a config file. In the config file you can define the
 lookups for different brokers. See below
-
+```
 [ICM]
 AUDCAD: AUDCAD
 AUDCHF: AUDCHF
@@ -581,13 +581,12 @@ AUDCAD: AUDCAD.spa
 AUDCHF: AUDCHF.spa
 AUDUSD: AUDUSD.spa
 AUDNZD: AUDNZD.spa
-
-
 AUDJPY: AUDJPY.spa
+```
 
 With the next code you can easy select the lookup table for a typical broker
-
 The python script only recognizes the instruments defined in the lookup dictionary.
+
 ```
 def config_instruments(config, section):
 dict1 = {}
@@ -610,6 +609,7 @@ config.read(CONFIG_FILE)
 
 brokerInstrumentsLookup = config_instruments(config,'ICM')
 ```
+
 ## Orders, deals and positions.
 
 In MT4 all trades are called orders. The only difference is by market/actual orders and pending
