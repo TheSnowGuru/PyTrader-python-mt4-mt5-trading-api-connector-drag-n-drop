@@ -4,7 +4,7 @@
 Documentation for connecting Metatrader 5 with Python with a simple drag and drop EA.
 A full suited solution and fully tested and fast and efficient. 
 
-# Python MT5 ea connecor
+# Python MT5 EA connecor
 Easier more than ever before!
 Connecting Metatrader5 with Python strategies with this simple drag and drop EA has never been so easy!
 A full & fast solution tested with real trading.
