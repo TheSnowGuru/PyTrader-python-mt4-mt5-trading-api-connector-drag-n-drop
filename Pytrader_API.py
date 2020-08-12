@@ -2,6 +2,7 @@ import socket, numpy as np
 from collections import namedtuple
 import pandas as pd
 import configparser
+import MetaTrader5 as mt5
 import math
 from datetime import datetime
 
