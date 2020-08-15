@@ -5,6 +5,27 @@ import configparser
 import MetaTrader5 as mt5
 import math
 from datetime import datetime
+import json
+
+#we create an object of the account snapshot for the agent
+
+print('serialization')
+myDictObj = { "account": acc related nested
+
+"orders":,
+Nested per asset" ,
+
+Stream.....: }
+
+
+
+##convert object to json
+serialized= json.dumps(myDictObj, sort_keys=True, indent=3)
+print(serialized)
+
+## now we are gonna convert json to object
+deserialization=json.loads(serialized)
+print(deserialization)
 
 class Pytrader_API:
 
