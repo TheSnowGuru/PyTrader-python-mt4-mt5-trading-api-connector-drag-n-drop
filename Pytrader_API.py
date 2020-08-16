@@ -121,7 +121,7 @@ class Pytrader_API:
             self.command_OK = False
             return None
 
-        returnDict = {}
+        static_account_info = {}
         del x[0:2]
         x.pop(-1)
 
@@ -136,7 +136,7 @@ class Pytrader_API:
         returnDict['margin_close'] = float(x[8])
         
         self.command_OK = True
-        return returnDict
+        return static_account_info
 
 
     def Get_dynamic_account_info(self):
@@ -155,7 +155,7 @@ class Pytrader_API:
             self.command_OK = False
             return None
 
-        returnDict = {}
+        dynamic_account_info = {}
         del x[0:2]
         x.pop(-1)
 
@@ -167,7 +167,7 @@ class Pytrader_API:
         returnDict['margin_free'] = float(x[5])
         
         self.command_OK = True
-        return returnDict
+        return dynamic_account_info
 
 
     def Get_instrument_info(self,
@@ -190,7 +190,7 @@ class Pytrader_API:
             self.command_OK = False
             return None
 
-        returnDict = {}
+        instrument_info = {}
         del x[0:2]
         x.pop(-1)
         
@@ -204,7 +204,7 @@ class Pytrader_API:
         returnDict['tick_value'] = float(x[6])
         
         self.command_OK = True
-        return returnDict
+        return instrument_info
 
     def Check_instrument(self,
                          instrument: str = 'EURUSD'):
@@ -272,7 +272,7 @@ class Pytrader_API:
             self.command_OK = False
             return None 
             
-        returnDict = {}        
+        last_tick_info = {}        
         del x[0:2]
         x.pop(-1)
 
@@ -284,7 +284,7 @@ class Pytrader_API:
         returnDict['volume'] = int(x[4])
         
         self.command_OK = True
-        return returnDict
+        return last_tick_info
 
     
     def Get_last_x_ticks_from_now(self,
@@ -432,7 +432,8 @@ class Pytrader_API:
 
         del x[0:2]
         x.pop(-1)
-        returnDict = {}
+        actual_bar_info = {}
+
         returnDict['instrument'] = str(self.instrument_name_universal)
         returnDict['date'] = int(x[0]) 
         returnDict['open'] = float(x[1]) 
@@ -442,7 +443,7 @@ class Pytrader_API:
         returnDict['volume'] = int(x[5])
 
         self.command_OK = True
-        return returnDict
+        return actual_bar_info
 
     
     def Get_last_x_bars_from_now(self,
