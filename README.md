@@ -48,11 +48,7 @@ You can run your strategies on linux through wine.
 Here is a ready docker + Wine:   [here](https://hub.docker.com/r/scottyhardy/docker-wine/)  
 
 
-## Python MT5 EA
-Clone & Test Now :)  - [Enjoy](https://gum.co/mt5python)
 
-## Python MT4 EA
-Clone & Test Now :)  - [Enjoy](https://gum.co/mt4python)
 
 
 
