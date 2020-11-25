@@ -46,9 +46,9 @@ See documentation  MT4[here](https://github.com/TheSnowGuru/PyTrader-python-mt4-
 You can run your strategies on linux through wine.    
 Here is a ready docker + Wine:   [here](https://hub.docker.com/r/scottyhardy/docker-wine/)  
 
-## To get the EA working for Live Trading:
-# MT5 python ==> Get FULL Version [here](https://www.mql5.com/en/market/product/58259)
-# MT4 python ==> Get FULL Version [here](https://www.mql5.com/en/market/product/58254)
+# To get the EA working for Live Trading:
+## MT5 python ==> Get FULL Version [here](https://www.mql5.com/en/market/product/58259)
+## MT4 python ==> Get FULL Version [here](https://www.mql5.com/en/market/product/58254)
 
 
 
