@@ -1,8 +1,18 @@
 ## PyTrader  - Drag & Drop MT4 & MT5  Python API Connector for Metatrader
 ![PyTrader](https://github.com/TheSnowGuru/PyTrader-python-mt5-trading-api-connector/blob/master/PyTrader-icon-small.png)
 
-Documentation for connecting Metatrader 5 with Python with a simple drag and drop EA.
+Documentation for connecting Metatrader 5 and metatrader 4 with Python with a simple drag and drop EA.
 A full suited solution and fully tested and fast and efficient. 
+The Pytrader ecosystem consists of a python script and a MT5 or MT4 EA. 
+Further for the licensing an indicator is used. 
+The communication between the python script and the EA is based on sockets.
+EA is the  Server and the python script the  Client. 
+It is always query(function / python script) and output(data / server).
+The EA does not need to run on same computer as the python script is running on. 
+On our Github link you will find the python script, the EA’s, full documentation, and a Pytrader example script showing how to call the functions.
+For questions we have also a discord channel. 
+In demo (without licensing indicator) also full functionality, but for a limited number of instruments 
+(EURUSD, AUDCHF, NZDCHF, GBPNZD and USDCAD).
 
 # Python MT4 & MT5 EA connecor
 Easier more than ever before!
