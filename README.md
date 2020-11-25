@@ -31,7 +31,6 @@ Enjoy.
 * MT5 → Python Get last X bars array[date, open, low, high, close, vol]
 * MT5 → Python Get indicator data from MT5 to your script - coming soon!
 
-# MT5 python ==> Get FULL Version [here](https://www.mql5.com/en/market/product/58243)
 ## installation flow:
 ![alt text](https://github.com/TheSnowGuru/PyTrader-python-mt5-trading-api-connector/blob/master/Pytrader_API_installation_MT5.png  "Installation flow")
 
@@ -47,8 +46,9 @@ See documentation  MT4[here](https://github.com/TheSnowGuru/PyTrader-python-mt4-
 You can run your strategies on linux through wine.    
 Here is a ready docker + Wine:   [here](https://hub.docker.com/r/scottyhardy/docker-wine/)  
 
-
-
+## To get the EA working for Live Trading:
+# MT5 python ==> Get FULL Version [here](https://www.mql5.com/en/market/product/58259)
+# MT4 python ==> Get FULL Version [here](https://www.mql5.com/en/market/product/58254)
 
 
 
