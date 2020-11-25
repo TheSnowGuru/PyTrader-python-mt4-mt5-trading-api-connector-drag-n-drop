@@ -3,6 +3,7 @@
 
 Documentation for connecting Metatrader 5 and metatrader 4 with Python with a simple drag and drop EA.
 A full suited solution and fully tested and fast and efficient. 
+
 The Pytrader ecosystem consists of a python script and a MT5 or MT4 EA. 
 Further for the licensing an indicator is used. 
 The communication between the python script and the EA is based on sockets.
