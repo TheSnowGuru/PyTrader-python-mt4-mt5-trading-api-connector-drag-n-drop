@@ -50,14 +50,14 @@ Enjoy.
 ![alt text](https://github.com/TheSnowGuru/PyTrader-python-mt5-trading-api-connector/blob/master/Pytrader_API_installation_MT4.png  "Installation flow")
 
 ## myLib documentation
-See documentation  MT5[here](https://github.com/TheSnowGuru/PyTrader-python-mt4-mt5-trading-api-connector-drag-n-drop/blob/master/Pytrader_API%20for%20MT5.pdf)
-See documentation  MT4[here](https://github.com/TheSnowGuru/PyTrader-python-mt4-mt5-trading-api-connector-drag-n-drop/blob/master/Pytrader_API%20for%20MT4.pdf)
+See documentation  MT5 [here](https://github.com/TheSnowGuru/PyTrader-python-mt4-mt5-trading-api-connector-drag-n-drop/blob/master/Pytrader_API%20for%20MT5.pdf)
+See documentation  MT4 [here](https://github.com/TheSnowGuru/PyTrader-python-mt4-mt5-trading-api-connector-drag-n-drop/blob/master/Pytrader_API%20for%20MT4.pdf)
 
 ## Linux installation: 
 You can run your strategies on linux through wine.    
 Here is a ready docker + Wine:   [here](https://hub.docker.com/r/scottyhardy/docker-wine/)  
 
-## Get the EA working for Live Trading:
+## Get the EA working for all instruments:
 ## MT5 python ==> Get FULL Version [here](https://www.mql5.com/en/market/product/58259)
 ## MT4 python ==> Get FULL Version [here](https://www.mql5.com/en/market/product/58254)
 
