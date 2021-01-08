@@ -91,7 +91,7 @@ if (connection == True):
             df.insert(0, column='sma_1', value=ta.SMA(df['close'], timeperiod=sma_period_1))
             df.insert(0, column='sma_2', value=ta.SMA(df['close'], timeperiod=sma_period_2))
 
-            # conditions will be checked on bar [1] and [2], bar [0] is actual bar and not yet closed
+            # conditions will be checked on bar [index] and [index-1]
             index = len(df) - 2
             if (df['sma_1'][index] > df['sma_2'][index] and df['sma_1'][index-1] < df['sma_2'][index-1]):           # buy condition
                 
