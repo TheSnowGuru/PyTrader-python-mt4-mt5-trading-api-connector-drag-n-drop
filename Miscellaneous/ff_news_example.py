@@ -1,4 +1,4 @@
-from ff_news.ff_news import *
+from ff_news import *
 
 
 # create instance with default values
