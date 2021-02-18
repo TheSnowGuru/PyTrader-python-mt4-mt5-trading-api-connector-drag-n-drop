@@ -343,7 +343,7 @@ class Pytrader_API:
             bool: True or False
         """
         self.instrument_name_universal = instrument.upper()
-        self.command = 'F004#1#' + self.get_broker_instrument_name(self.instrument_name_universal) + ':'
+        self.command = 'F004#1#' + self.get_broker_instrument_name(self.instrument_name_universal) + '#'
         ok, dataString = self.send_command(self.command)
 
         if not ok:
