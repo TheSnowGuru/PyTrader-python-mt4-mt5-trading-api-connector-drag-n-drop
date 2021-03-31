@@ -1374,7 +1374,7 @@ class Pytrader_API:
         ('open_price', float),
         ('open_time', int),
         ('close_price', float),
-        ('close_time', float),
+        ('close_time', int),
         ('comment', str),
         ('profit', float),
         ('swap', float),
