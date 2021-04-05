@@ -15,6 +15,8 @@ For questions we have also a discord channel.
 In demo (without licensing indicator) also full functionality, but for a limited number of instruments 
 (EURUSD, AUDCHF, NZDCHF, GBPNZD and USDCAD).
 
+Check versions: Pytrader version _06 works with EA version _06.
+
 # Python MT4 & MT5 EA connecor
 Easier more than ever before!
 Connecting Metatrader5 with Python strategies with this simple drag and drop EA has never been so easy!
