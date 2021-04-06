@@ -765,12 +765,11 @@ class Pytrader_API:
 
         dt = np.dtype([('date', np.int64), ('open', np.float64), ('high', np.float64),
                        ('low', np.float64), ('close', np.float64), ('volume', np.int32)])
-        rates = np.empty(self.numberofbars, dtype=dt)
+        rates = np.zeros(self.numberofbars, dtype=dt)
 
         if (self.numberofbars > self.max_bars):
-            iloop = self.numberofbars / self.max_bars
-            iloop = math.floor(iloop)
-            itail = int(self.numberofbars - iloop * self.max_bars)
+            iloop = self.numberofbars // self.max_bars
+            itail = self.numberofbars % self.max_bars
             #print('iloop: ' + str(iloop))
             #print('itail: ' + str(itail))
 
@@ -806,12 +805,12 @@ class Pytrader_API:
                     rates[value + index * self.max_bars][5] = int(y[5])
 
                 if (len(x) < self.max_bars):
-                    rates = np.sort(rates)
+                    rates = np.sort(rates[rates[:]['date']!=0])
                     self.command_OK = True
                     return rates
 
             if (itail == 0):
-                rates = np.sort(rates)
+                rates = np.sort(rates[rates[:]['date']!=0])
                 self.command_OK = True
                 return rates
 
@@ -847,7 +846,7 @@ class Pytrader_API:
                     rates[value + iloop * self.max_bars][5] = int(y[5])
 
                 self.command_OK = True
-                rates = np.sort(rates)
+                rates = np.sort(rates[rates[:]['date']!=0])
                 return rates
         else:
             self.command = 'F042#4#' + str(self.instrument) + '#' + \
@@ -883,7 +882,7 @@ class Pytrader_API:
                 rates[value][5] = int(y[5])
 
         self.command_OK = True
-        return rates
+        return rates[:len(x)]
 
     def Get_all_orders(self) -> pd.DataFrame:
         """retrieves all pending orders.
