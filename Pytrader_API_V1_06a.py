@@ -492,7 +492,7 @@ class Pytrader_API:
             date,
             ask,
             bid,
-            last volume,
+            last deal price,
             volume
             spread, in points
         """
