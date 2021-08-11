@@ -8,10 +8,15 @@ The logic is a simple crossing of two sma averages.
 
 import time
 import pandas as pd
-import talib as ta
+#import talib as ta
 
 from utils.Pytrader_API_V1_06a import Pytrader_API
 from utils.LogHelper import Logger                              # for logging events
+
+# for not using talib
+def calculate_simple_moving_average(series: pd.Series, n: int=20) -> pd.Series:
+    """Calculates the simple moving average"""
+    return series.rolling(n).mean()
 
 log = Logger()
 log.configure()
@@ -103,8 +108,12 @@ if (connection == True):
             df['date'] = pd.to_datetime(df['date'], unit='s')
             # add the 2x sma's to
             # using talib here
-            df.insert(0, column='sma_1', value=ta.SMA(df['close'], timeperiod=sma_period_1))
-            df.insert(0, column='sma_2', value=ta.SMA(df['close'], timeperiod=sma_period_2))
+            # add the 2x sma's to
+            # using talib here or not
+            #df.insert(0, column='sma_1', value=ta.SMA(df['close'], timeperiod=sma_period_1))
+            #df.insert(0, column='sma_2', value=ta.SMA(df['close'], timeperiod=sma_period_2))
+            df.insert(0, column='sma_1', value=calculate_simple_moving_average(df['close'], n = sma_period_1))
+            df.insert(0, column='sma_2', value=calculate_simple_moving_average(df['close'], n = sma_period_2))
 
             index = len(df) - 2
             # conditions will be checked on bar [index] and [index-1]
