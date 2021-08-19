@@ -1,0 +1,106 @@
+
+2021-08-19 17:46:14 DEBUG    Connected to back tester.
+2021-08-19 17:46:14 DEBUG    Backtester runs in demo.
+2021-08-19 17:46:22 DEBUG    Strategy started
+2021-08-19 17:46:29 DEBUG    Sell trade opened
+2021-08-19 17:46:30 DEBUG    Buy trade opened
+2021-08-19 17:46:30 DEBUG    closed sell trade due to cross and opening buy trade
+2021-08-19 17:46:30 DEBUG    trade with ticket 2 closed in profit
+2021-08-19 17:46:36 DEBUG    Sell trade opened
+2021-08-19 17:46:37 DEBUG    trade with ticket 3 closed in profit
+2021-08-19 17:46:40 DEBUG    Buy trade opened
+2021-08-19 17:46:44 DEBUG    Sell trade opened
+2021-08-19 17:46:44 DEBUG    closed buy trade due to cross and opening sell trade
+2021-08-19 17:46:49 DEBUG    trade with ticket 5 closed in profit
+2021-08-19 17:46:51 DEBUG    Buy trade opened
+2021-08-19 17:46:52 DEBUG    Sell trade opened
+2021-08-19 17:46:52 DEBUG    closed buy trade due to cross and opening sell trade
+2021-08-19 17:46:56 DEBUG    trade with ticket 7 closed in profit
+2021-08-19 17:46:57 DEBUG    Buy trade opened
+2021-08-19 17:47:02 DEBUG    Sell trade opened
+2021-08-19 17:47:02 DEBUG    closed buy trade due to cross and opening sell trade
+2021-08-19 17:47:03 DEBUG    trade with ticket 9 closed in profit
+2021-08-19 17:47:04 DEBUG    Buy trade opened
+2021-08-19 17:47:07 DEBUG    Sell trade opened
+2021-08-19 17:47:07 DEBUG    closed buy trade due to cross and opening sell trade
+2021-08-19 17:47:12 DEBUG    Buy trade opened
+2021-08-19 17:47:12 DEBUG    closed sell trade due to cross and opening buy trade
+2021-08-19 17:47:12 DEBUG    trade with ticket 12 closed in profit
+2021-08-19 17:47:16 DEBUG    Sell trade opened
+2021-08-19 17:47:18 DEBUG    trade with ticket 13 closed in profit
+2021-08-19 17:47:21 DEBUG    Buy trade opened
+2021-08-19 17:47:23 DEBUG    trade with ticket 14 closed in profit
+2021-08-19 17:47:24 DEBUG    Sell trade opened
+2021-08-19 17:47:37 DEBUG    Buy trade opened
+2021-08-19 17:47:37 DEBUG    closed sell trade due to cross and opening buy trade
+2021-08-19 17:47:40 DEBUG    Sell trade opened
+2021-08-19 17:47:40 DEBUG    closed buy trade due to cross and opening sell trade
+2021-08-19 17:47:40 DEBUG    trade with ticket 17 closed in profit
+2021-08-19 17:47:43 DEBUG    Buy trade opened
+2021-08-19 17:47:43 DEBUG    trade with ticket 18 closed in profit
+2021-08-19 17:47:50 DEBUG    Sell trade opened
+2021-08-19 17:47:54 DEBUG    trade with ticket 19 closed in profit
+2021-08-19 17:47:55 DEBUG    Buy trade opened
+2021-08-19 17:47:56 DEBUG    trade with ticket 20 closed in profit
+2021-08-19 17:48:03 DEBUG    Sell trade opened
+2021-08-19 17:48:16 DEBUG    Buy trade opened
+2021-08-19 17:48:16 DEBUG    closed sell trade due to cross and opening buy trade
+2021-08-19 17:48:17 DEBUG    trade with ticket 22 closed in profit
+2021-08-19 17:48:18 DEBUG    Sell trade opened
+2021-08-19 17:48:19 DEBUG    trade with ticket 23 closed in profit
+2021-08-19 17:48:20 DEBUG    Buy trade opened
+2021-08-19 17:48:20 DEBUG    trade with ticket 24 closed in profit
+2021-08-19 17:48:22 DEBUG    Sell trade opened
+2021-08-19 17:48:29 DEBUG    Buy trade opened
+2021-08-19 17:48:29 DEBUG    closed sell trade due to cross and opening buy trade
+2021-08-19 17:48:30 DEBUG    Sell trade opened
+2021-08-19 17:48:30 DEBUG    closed buy trade due to cross and opening sell trade
+2021-08-19 17:48:35 DEBUG    trade with ticket 27 closed in profit
+2021-08-19 17:48:36 DEBUG    Buy trade opened
+2021-08-19 17:48:46 DEBUG    Sell trade opened
+2021-08-19 17:48:46 DEBUG    closed buy trade due to cross and opening sell trade
+2021-08-19 17:48:49 DEBUG    trade with ticket 29 closed in profit
+2021-08-19 17:48:50 DEBUG    Buy trade opened
+2021-08-19 17:48:51 DEBUG    trade with ticket 30 closed in profit
+2021-08-19 17:48:53 DEBUG    Sell trade opened
+2021-08-19 17:48:57 DEBUG    trade with ticket 31 closed in profit
+2021-08-19 17:48:58 DEBUG    Buy trade opened
+2021-08-19 17:49:00 DEBUG    trade with ticket 32 closed in profit
+2021-08-19 17:49:04 DEBUG    Sell trade opened
+2021-08-19 17:49:28 DEBUG    Buy trade opened
+2021-08-19 17:49:28 DEBUG    closed sell trade due to cross and opening buy trade
+2021-08-19 17:49:33 DEBUG    Sell trade opened
+2021-08-19 17:49:33 DEBUG    closed buy trade due to cross and opening sell trade
+2021-08-19 17:49:41 DEBUG    Buy trade opened
+2021-08-19 17:49:41 DEBUG    closed sell trade due to cross and opening buy trade
+2021-08-19 17:49:44 DEBUG    trade with ticket 36 closed in profit
+2021-08-19 17:49:44 DEBUG    Sell trade opened
+2021-08-19 17:49:52 DEBUG    Buy trade opened
+2021-08-19 17:49:52 DEBUG    closed sell trade due to cross and opening buy trade
+2021-08-19 17:49:55 DEBUG    Sell trade opened
+2021-08-19 17:49:55 DEBUG    closed buy trade due to cross and opening sell trade
+2021-08-19 17:49:58 DEBUG    Buy trade opened
+2021-08-19 17:49:58 DEBUG    closed sell trade due to cross and opening buy trade
+2021-08-19 17:50:09 DEBUG    Sell trade opened
+2021-08-19 17:50:09 DEBUG    closed buy trade due to cross and opening sell trade
+2021-08-19 17:50:11 DEBUG    Buy trade opened
+2021-08-19 17:50:11 DEBUG    closed sell trade due to cross and opening buy trade
+2021-08-19 17:50:16 DEBUG    Sell trade opened
+2021-08-19 17:50:16 DEBUG    closed buy trade due to cross and opening sell trade
+2021-08-19 17:50:19 DEBUG    trade with ticket 43 closed in profit
+2021-08-19 17:50:20 DEBUG    Buy trade opened
+2021-08-19 17:50:26 DEBUG    Sell trade opened
+2021-08-19 17:50:26 DEBUG    closed buy trade due to cross and opening sell trade
+2021-08-19 17:50:27 DEBUG    trade with ticket 45 closed in profit
+2021-08-19 17:50:29 DEBUG    Buy trade opened
+2021-08-19 17:50:30 DEBUG    trade with ticket 46 closed in profit
+2021-08-19 17:50:34 DEBUG    Sell trade opened
+2021-08-19 17:50:38 DEBUG    Buy trade opened
+2021-08-19 17:50:38 DEBUG    closed sell trade due to cross and opening buy trade
+2021-08-19 17:50:41 DEBUG    Sell trade opened
+2021-08-19 17:50:41 DEBUG    closed buy trade due to cross and opening sell trade
+2021-08-19 17:50:42 DEBUG    trade with ticket 49 closed in profit
+2021-08-19 17:50:44 DEBUG    Buy trade opened
+2021-08-19 17:50:50 DEBUG    Sell trade opened
+2021-08-19 17:50:50 DEBUG    closed buy trade due to cross and opening sell trade
+2021-08-19 17:50:52 DEBUG    Strategy stopped end of run
