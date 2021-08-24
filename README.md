@@ -15,6 +15,8 @@ For questions we have also a discord channel.
 In demo (without licensing indicator) also full functionality, but for a limited number of instruments 
 (EURUSD, AUDCHF, NZDCHF, GBPNZD and USDCAD).
 
+[![name](https://github.com/TheSnowGuru/PyTrader-python-mt4-mt5-trading-api-connector-drag-n-drop/blob/master/join.png)](https://discord.gg/XTmwSZkUrs )
+
 Check versions: Pytrader version _06 works with EA version .06.
 
 # Python MT4 & MT5 EA connecor
@@ -23,6 +25,7 @@ Connecting Metatrader5 with Python strategies with this simple drag and drop EA 
 A full & fast solution tested with real trading.
 Amazing capabilities like download bar data & creating a live feed for your strategies with 1 line of code. 
 Enjoy.
+
 
 ## Drag & Drop Python Connector for MT4 & MT5 
 ## Growing list of features:
