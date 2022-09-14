@@ -11,7 +11,7 @@ import pandas as pd
 import configparser
 from datetime import datetime
 import pytz
-from utils.Pytrader_API_V1_03 import Pytrader_API
+from utils.api.Pytrader_API_V2_081a import Pytrader_API
 
 
 instrument_list = ['EURUSD', 'GBPJPY', 'AUDNZD']
