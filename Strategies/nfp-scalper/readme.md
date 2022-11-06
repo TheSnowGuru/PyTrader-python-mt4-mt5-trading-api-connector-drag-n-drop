@@ -1,8 +1,8 @@
 ##  PyTrader -NFP scalper
-Some example strategy scripts:
+A new trading strategy , trying to find and edge in historical data of NFP results . 
 
 # to do:👋
-use pytrader to make the connection and correlate nfp data with eurusd data. 
+use pytrader to make the connection and correlate nfp data with EURUSD, WS30 data. 
 
 
 ## codtribute 🌊
