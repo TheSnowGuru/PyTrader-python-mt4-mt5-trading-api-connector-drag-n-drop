@@ -4,7 +4,7 @@ from ff_news import *
 # create instance with default values
 # the downloaded news information will be stored in a news sub folder
 # if the folder does not exit it will be created
-news = Check_News(url='http://cdn-nfs.faireconomy.media/ff_calendar_thisweek.xml', 
+news = Check_News(url=https://nfs.faireconomy.media/ff_calendar_thisweek.xml', 
                         update_in_minutes=240, 
                         minutes_before_news=480, 
                         minutes_after_news = 60)
