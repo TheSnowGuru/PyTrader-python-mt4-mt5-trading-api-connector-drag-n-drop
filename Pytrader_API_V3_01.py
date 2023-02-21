@@ -1,5 +1,5 @@
 # Pytrader API for MT4 and MT5
-# Version V2_081
+# Version V3.01
 
 import socket
 import numpy as np
