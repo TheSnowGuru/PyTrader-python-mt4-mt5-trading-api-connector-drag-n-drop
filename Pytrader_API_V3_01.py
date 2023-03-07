@@ -1,5 +1,5 @@
 # Pytrader API for MT4 and MT5
-# Version V2_081
+# Version V3_01
 
 import socket
 import numpy as np
@@ -22,6 +22,7 @@ ERROR_DICT['00104'] = 'Undefined answer from license EA'
 
 ERROR_DICT['00301'] = 'Unknown instrument for broker'
 ERROR_DICT['00302'] = 'Instrument not in demo'
+ERROR_DICT['00304'] = 'Unknown instrument for broker'
 
 ERROR_DICT['00401'] = 'Instrument not in demo'
 ERROR_DICT['00402'] = 'Instrument not exists for broker'
@@ -29,7 +30,8 @@ ERROR_DICT['00402'] = 'Instrument not exists for broker'
 ERROR_DICT['00501'] = 'No instrument defined/configured'
 
 ERROR_DICT['02001'] = 'Instrument not in demo'
-ERROR_DICT['02002'] = 'No valid instrument'
+ERROR_DICT['02004'] = 'Unknown instrument for broker'
+ERROR_DICT['02003'] = 'Unknown instrument for broker'
 
 ERROR_DICT['02101'] = 'Instrument not in demo'
 ERROR_DICT['02102'] = 'No ticks'
@@ -39,11 +41,13 @@ ERROR_DICT['04101'] = 'Instrument not in demo'
 ERROR_DICT['04102'] = 'Wrong/unknown time frame'
 ERROR_DICT['04103'] = 'No records'
 ERROR_DICT['04104'] = 'Undefined error'
+ERROR_DICT['04105'] = 'Unknown instrument for broker'
 
 
 ERROR_DICT['04201'] = 'Instrument not in demo'
 ERROR_DICT['04202'] = 'Wrong/unknown time frame'
 ERROR_DICT['04203'] = 'No records' 
+ERROR_DICT['04204'] = 'Unknown instrument for broker'
 
 ERROR_DICT['04501'] = 'Instrument not in demo'
 ERROR_DICT['04502'] = 'Wrong/unknown time frame'
@@ -63,6 +67,7 @@ ERROR_DICT['07007'] = 'Wrong TP value'
 ERROR_DICT['07008'] = 'Wrong volume value'
 ERROR_DICT['07009'] = 'Error opening market order'
 ERROR_DICT['07010'] = 'Error opening pending order'
+ERROR_DICT['07011'] = 'Unknown instrument for broker'
 
 ERROR_DICT['07101'] = 'Trading not allowed'
 ERROR_DICT['07102'] = 'Position not found/error'
@@ -275,6 +280,7 @@ class Pytrader_API:
             Account maximum number of pending orders,
             Account margin call percentage,
             Account close open trades margin percentage
+            Account company
         """
         self.command_return_error = ''
 
@@ -305,6 +311,7 @@ class Pytrader_API:
         returnDict['limit_orders'] = int(x[6])
         returnDict['margin_call'] = float(x[7])
         returnDict['margin_close'] = float(x[8])
+        returnDict['company'] = str(x[9])
 
         self.command_OK = True
         return returnDict
@@ -579,7 +586,7 @@ class Pytrader_API:
         """
         self.instrument_name_universal = instrument.upper()
         self.instrument = self.get_broker_instrument_name(self.instrument_name_universal)
-        if (self.instrument == 'none'):
+        if (self.instrument == 'none' or self.instrument == None):
             self.command_return_error = 'Instrument not in list'
             self.command_OK = False
             return None
@@ -687,12 +694,13 @@ class Pytrader_API:
             last deal price,
             volume
             spread, in points
+            date_in_ms
         """
         self.command_return_error = ''
         self.instrument_name_universal = instrument.upper()
         self.instrument = self.get_broker_instrument_name(self.instrument_name_universal)
         if (self.instrument == 'none' or self.instrument == None):
-            self.command_return_error = 'Instrument not in list'
+            self.command_return_error = 'Instrument not in broker list'
             self.command_OK = False
             return None
         ok, dataString = self.send_command('F020^2^' + self.instrument + '^')
@@ -721,6 +729,7 @@ class Pytrader_API:
         returnDict['last'] = float(x[3])
         returnDict['volume'] = int(x[4])
         returnDict['spread'] = float(x[5])
+        returnDict['date_in_ms'] = int(x[6])
 
         self.command_OK = True
         return returnDict
@@ -745,7 +754,7 @@ class Pytrader_API:
         self.instrument_name_universal = instrument.upper()
         self.instrument = self.get_broker_instrument_name(self.instrument_name_universal)
         if (self.instrument == 'none' or self.instrument == None):
-            self.command_return_error = 'Instrument not in list'
+            self.command_return_error = 'Instrument not in broker list'
             self.command_OK = False
             return None
         
@@ -893,7 +902,7 @@ class Pytrader_API:
         self.instrument_name_universal = instrument.upper()
         self.instrument = self.get_broker_instrument_name(self.instrument_name_universal)
         if (self.instrument == 'none'  or self.instrument == None):
-            self.command_return_error = 'Instrument not in list'
+            self.command_return_error = 'Instrument not in broker list'
             self.command_OK = False
             return None
         self.command = 'F041^3^' + self.instrument + '^' + str(timeframe) + '^'
@@ -951,6 +960,10 @@ class Pytrader_API:
         self.command = 'F045^3^'
         for index in range (0, len(instrument_list), 1):
             _instr = self.get_broker_instrument_name(instrument_list[index].upper())
+            if (self.instrument == 'none'  or self.instrument == None):
+                self.command_return_error = 'Instrument not in broker list'
+                self.command_OK = False
+                return None
             self.command = self.command + _instr + '$'
         
         self.command = self.command + '^' + str(specific_bar_index) + '^' + str(timeframe) + '^'
@@ -1010,7 +1023,7 @@ class Pytrader_API:
         self.instrument_name_universal = instrument.upper()
         self.instrument = self.get_broker_instrument_name(self.instrument_name_universal)
         if (self.instrument == 'none'  or self.instrument == None):
-            self.command_return_error = 'Instrument not in list'
+            self.command_return_error = 'Instrument not in broker list'
             self.command_OK = False
             return None
         self.numberofbars = nbrofbars
@@ -1573,7 +1586,7 @@ class Pytrader_API:
         comment.replace('$', '')
         comment.replace('!', '')
         broker_instrument = self.get_broker_instrument_name(self.instrument_name_universal)
-        if (broker_instrument == None):
+        if (self.instrument == 'none' or self.instrument == None):
             self.command_return_error = 'Instrument not known, check brookerlookuptable'
             self.command_OK = False
             self.order_return_message = 'Instrument not known, check brookerlookuptable'
