@@ -2086,6 +2086,7 @@ class Pytrader_API:
                 data_received = data_received + self.sock.recv(500000).decode()
                 if data_received.endswith('!'):
                     break
+                return True, data_received
             except socket.error as msg:
                 self.connected = False
                 self.command_return_error = 'Unexpected socket communication error'
