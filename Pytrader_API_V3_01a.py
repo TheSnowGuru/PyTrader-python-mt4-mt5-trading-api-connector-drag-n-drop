@@ -2079,18 +2079,19 @@ class Pytrader_API:
         self.command = command + self.authorization_code + "^" "!"
         self.timeout = False
 
-        try:
+       try:
             self.sock.send(bytes(self.command, "utf-8"))
             data_received = ''
-            try:
-                data_received = data_received + self.sock.recv(500000).decode()
-                if data_received.endswith('!'):
-                    break
-            except socket.error as msg:
-                self.connected = False
-                self.command_return_error = 'Unexpected socket communication error'
-                print(msg)
-                return False, None
+            while True:
+                try:
+                    data_received = data_received + self.sock.recv(500000).decode()
+                    if data_received.endswith('!'):
+                        break
+                except socket.error as msg:
+                    self.connected = False
+                    self.command_return_error = 'Unexpected socket communication error'
+                    print(msg)
+                    return False, None
             return True, data_received
         except socket.timeout as msg:
             self.timeout = True
