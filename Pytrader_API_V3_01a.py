@@ -2076,12 +2076,11 @@ class Pytrader_API:
         else:
             return True	
     
-    def send_command(self,
-                     command):
+    def send_command(self, command):
         self.command = command + self.authorization_code + "^" "!"
         self.timeout = False
 
-       try:
+        try:
             self.sock.send(bytes(self.command, "utf-8"))
             data_received = ''
             while True:
