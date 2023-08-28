@@ -287,6 +287,7 @@ class Pytrader_API:
             Account margin call percentage,
             Account close open trades margin percentage
             Account company
+            Account server
         """
         self.command_return_error = ''
 
@@ -318,6 +319,7 @@ class Pytrader_API:
         returnDict['margin_call'] = float(x[7])
         returnDict['margin_close'] = float(x[8])
         returnDict['company'] = str(x[9])
+        returnDict['server'] = str(x[10])
 
         self.command_OK = True
         return returnDict
