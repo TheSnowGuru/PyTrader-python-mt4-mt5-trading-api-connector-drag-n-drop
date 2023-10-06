@@ -26,6 +26,8 @@ ERROR_DICT['00304'] = 'Unknown instrument for broker'
 
 ERROR_DICT['01101'] = 'Undefined check terminal connection error'
 
+ERROR_DICT['01201'] = 'Undefined check MT type error'
+
 ERROR_DICT['00401'] = 'Instrument not in demo'
 ERROR_DICT['00402'] = 'Instrument not exists for broker'
 
@@ -286,7 +288,7 @@ class Pytrader_API:
             x = dataString.split('^')
 
             if x[2] == 'OK':
-                self.timeout = True
+                self.timeout = False
                 self.command_OK = True
                 return True
             else:
@@ -296,6 +298,45 @@ class Pytrader_API:
                 return False
         except:
             self.command_return_error = ERROR_DICT['01101']
+            self.command_OK = False
+            return False
+        
+    def Check_terminal_type(self) -> str:
+        """
+        Checks for MT4 or MT5 terminal.
+        Args:
+            None
+        Returns:
+            string: if function for MT4 terminal answer would be 'MT4', for MT5 terminal 'MT5'
+                    
+        """
+
+        self.command = 'F012^1^'
+        self.command_return_error = ''
+        ok, dataString = self.send_command(self.command)
+
+        try:
+            if (ok == False):
+                self.command_OK = False
+                return False
+
+            x = dataString.split('^')
+
+            if x[3] == 'MT4':
+                self.timeout = False
+                self.command_OK = True
+                return 'MT4'
+            elif x[3] == 'MT5':
+                self.timeout = False
+                self.command_OK = True
+                return 'MT5'
+            else:
+                self.timeout = False
+                self.command_return_error = ERROR_DICT['99900']
+                self.command_OK = True
+                return False
+        except:
+            self.command_return_error = ERROR_DICT['01201']
             self.command_OK = False
             return False
 
@@ -2290,4 +2331,5 @@ class Pytrader_API:
         ('time', str),
         ('comment', str) ]
     
+
 
