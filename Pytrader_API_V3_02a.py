@@ -1,5 +1,5 @@
 # Pytrader API for MT4 and MT5
-# Version V3_01
+# Version V3_02
 
 import socket
 import numpy as np
@@ -36,6 +36,7 @@ ERROR_DICT['00501'] = 'No instrument defined/configured'
 ERROR_DICT['02001'] = 'Instrument not in demo'
 ERROR_DICT['02004'] = 'Unknown instrument for broker'
 ERROR_DICT['02003'] = 'Unknown instrument for broker'
+ERROR_DICT['02004'] = 'Time out error'
 
 ERROR_DICT['02101'] = 'Instrument not in demo'
 ERROR_DICT['02102'] = 'No ticks'
@@ -83,6 +84,12 @@ ERROR_DICT['07204'] = 'Error in partial close'
 
 ERROR_DICT['07301'] = 'Trading not allowed'
 ERROR_DICT['07302'] = 'Error in delete'
+
+ERROR_DICT['07401'] = 'Trading not allowed, check MT terminal settings'
+ERROR_DICT['07402'] = 'Error check number'
+ERROR_DICT['07403'] = 'Position does not exist'
+ERROR_DICT['07404'] = 'Opposite position does not exist'
+ERROR_DICT['07405'] = 'Both position of same type'
 
 ERROR_DICT['07501'] = 'Trading not allowed'
 ERROR_DICT['07502'] = 'Position not open' 
@@ -477,6 +484,8 @@ class Pytrader_API:
 
         """
             Check for trading allowed for specified symbol.
+            Args:
+                Instrument: Instrument to check
 
             Returns:
                 bool: True or False. True=allowed, False=not allowed
@@ -605,9 +614,9 @@ class Pytrader_API:
             lot_step,
             point,
             tick_size,
-            tick_value
-            swap_long
-            swap_short
+            tick_value,
+            swap_long,
+            swap_short,
             stop_level for sl and tp distance
         """
 
@@ -726,6 +735,41 @@ class Pytrader_API:
             instrument = self.get_universal_instrument_name(_instrument)
             if (instrument != None):
                 return_list.append(instrument)
+        return return_list
+
+    def Get_broker_instrument_names(self) ->list:
+        """
+        Retrieves broker instrument names in Market Watch, so not the universal names.
+
+        Args:
+            None
+        Returns:
+            List: All market symbols as broker instrument names in Market Watch
+        """
+        self.command_return_error = ''
+
+        self.command = 'F007^2^'
+        ok, dataString = self.send_command(self.command)
+        if not ok:
+            self.command_OK = False
+            return None
+
+        if self.debug:
+            print(dataString)
+
+        # analyze the answer
+        return_list = []
+        x = dataString.split('^')
+        if x[0] != 'F007':
+            self.command_return_error = ERROR_DICT[x[3]]
+            self.command_OK = False
+            return return_list
+        
+        del x[0:2]
+        x.pop(-1)
+        for item in range(0, len(x)):
+            _instrument = str(x[item])
+            return_list.append(_instrument)
         return return_list
        
     def Get_broker_server_time(self) -> datetime:
@@ -1690,7 +1734,7 @@ class Pytrader_API:
             self.command_return_error = ERROR_DICT[str(x[3])]
             self.command_OK = False
             self.order_return_message = ERROR_DICT[str(x[3])]
-            self.order_error = int(x[4])
+            self.order_error = int(x[3])
             return int(-1)
 
         self.command_OK = True
@@ -1760,6 +1804,39 @@ class Pytrader_API:
             self.command_OK = False
             self.order_return_message = ERROR_DICT[str(x[3])]
             #self.order_error = ERROR_DICT[str(x[3])]
+            return False
+
+        return True
+
+    def CloseBy_position_by_ticket(self,
+                                 ticket: int = 0,
+                                 ticket_opposite: int = 0) -> bool:
+        """
+        Close a position.
+
+        Args:
+            ticket: ticket of position to close
+            ticket_opposite: opposite ticket for closing
+
+        Returns:
+            bool: True or False
+        """
+        self.command_return_error = ''
+        self.command = 'F074^3^' + str(ticket) + '^' + str(ticket_opposite) + '^'
+        ok, dataString = self.send_command(self.command)
+        if not ok:
+            self.command_OK = False
+            return False
+
+        if self.debug:
+            print(dataString)
+
+        x = dataString.split('^')
+        if str(x[0]) != 'F074':
+            self.command_return_error = ERROR_DICT[str(x[3])]
+            self.command_OK = False
+            self.order_return_message = ERROR_DICT[str(x[3])]
+            self.order_error = int(x[4])
             return False
 
         return True
@@ -2078,7 +2155,7 @@ class Pytrader_API:
         self.command_OK = True
         return float(x[3])
         
-    def Get_logfile(self, date: datetime = datetime.now()) -> pd.DataFrame():
+    def Get_logfile(self, date: datetime = datetime.now()) -> pd.DataFrame:
         """
         Get logfile.
 
@@ -2331,5 +2408,4 @@ class Pytrader_API:
         ('time', str),
         ('comment', str) ]
     
-
 
