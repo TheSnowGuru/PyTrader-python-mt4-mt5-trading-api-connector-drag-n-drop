@@ -15,6 +15,7 @@ For questions we have also a discord channel.
 In demo (without licensing indicator) also full functionality, but for a limited number of instruments 
 (EURUSD, AUDCHF, NZDCHF, GBPNZD and USDCAD).
 
+
 [![name](https://github.com/TheSnowGuru/PyTrader-python-mt4-mt5-trading-api-connector-drag-n-drop/blob/master/join.png)](https://discord.gg/wRMUNP8ERa)
 
 Check versions: Pytrader version _06 works with EA version .06.
@@ -66,6 +67,8 @@ Here is a ready docker + Wine:   [here](https://hub.docker.com/r/scottyhardy/doc
 ## MT5 python ==> Get FULL Version [here](https://www.mql5.com/en/market/product/58259)
 ## MT4 python ==> Get FULL Version [here](https://www.mql5.com/en/market/product/58254)
 
+# NEW!
+# JsTrader - [New JSTrader version connect MT4 & MT5 with JavaScript with drag and drop](https://github.com/TheSnowGuru/JsTrader) 
 
 
 
