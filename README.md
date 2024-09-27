@@ -1,74 +1,48 @@
-## PyTrader  - Drag & Drop MT4 & MT5  Python API Connector for Metatrader
+## 🚀 PyTrader - Drag & Drop Python API Connector for MT4 & MT5
 ![PyTrader](https://github.com/TheSnowGuru/PyTrader-python-mt5-trading-api-connector/blob/master/PyTrader-icon-small.png)
 
-The Pytrader ecosystem consists of a python script and a MT5 or MT4 EA. 
-Further for the licensing an indicator is used. 
-Documentation for connecting Metatrader 5 and metatrader 4 with Python using a simple drag and drop EA.
-A full suited solution and fully tested , fast and efficient. 
+**PyTrader** is an easy-to-use drag-and-drop connector for linking your Python scripts with MT4/5. It consists of a Python script and an EA, plus an indicator for licensing. This fully tested solution offers fast and efficient communication via WebSockets, with the EA acting as the server and the Python script as the client.
 
-The communication between the python script and the EA is based on websockets.
-EA is the  Server and the python script the  Client. 
-It is always query(function / python script) and output(data / server).
-The EA does not need to run on same computer as the python script is running on. 
-On our Github link you will find the python script, the EA’s, full documentation, and a Pytrader example script showing how to call the functions.
-For questions we have also a discord channel. 
-In demo (without licensing indicator) also full functionality, but for a limited number of instruments 
-(EURUSD, AUDCHF, NZDCHF, GBPNZD and USDCAD).
+### 🔍 Key Features:
+- **Full Functionality** in demo mode (limited instruments: EURUSD, AUDCHF, NZDCHF, GBPNZD, USDCAD).
+- The EA can run on a different computer than the Python script.
+- Amazing capabilities with just one line of code to download bar data and create live feeds for your strategies!
 
+### 📈 Easy Connection to MT4/5
+With **PyTrader**, connecting Metatrader 5 with Python strategies has never been easier! Enjoy a complete solution tested with real trading.
 
-[![name](https://github.com/TheSnowGuru/PyTrader-python-mt4-mt5-trading-api-connector-drag-n-drop/blob/master/join.png)](https://discord.gg/wRMUNP8ERa)
+### 🌟 Growing List of Features:
+- Python login to MT5
+- Keep connection alive
+- Retrieve account info and open orders
+- Manage (open, change, close) orders directly from Python
+- Get last tick and bar data
+- Get instrument information, including pip value and tick size
 
-Check versions: Pytrader version _06 works with EA version .06.
+### 📚 Documentation
+- **MT5 Documentation**: [Read here](https://github.com/TheSnowGuru/PyTrader-python-mt4-mt5-trading-api-connector-drag-n-drop/blob/master/Pytrader_API%20for%20MT5.pdf)
+- **MT4 Documentation**: [Read here](https://github.com/TheSnowGuru/PyTrader-python-mt4-mt5-trading-api-connector-drag-n-drop/blob/master/Pytrader_API%20for%20MT4.pdf)
 
-# Python MT4 & MT5 EA connecor
-Easier more than ever before!
-Connecting Metatrader5 with Python strategies with this simple drag and drop EA has never been so easy!
-A full & fast solution tested with real trading.
-Amazing capabilities like download bar data & creating a live feed for your strategies with 1 line of code. 
-Enjoy.
+### ⚙️ Installation Flow:
+![MT5 Installation Flow](https://github.com/TheSnowGuru/PyTrader-python-mt5-trading-api-connector/blob/master/Pytrader_API_installation_MT5.png "MT5 Installation Flow")
 
+![MT4 Installation Flow](https://github.com/TheSnowGuru/PyTrader-python-mt5-trading-api-connector/blob/master/Pytrader_API_installation_MT4.png "MT4 Installation Flow")
 
-## Drag & Drop Python Connector for MT4 & MT5 
-## Growing list of features:
-* Python login to Metatrader5 Terminal
-* Python Connection keep alive function
-* Get MT5 Account Info→ Python client
-* Python Client Open New Orders → MT5
- (Verify the sending, and verifying the receiving the order ,in MetaTrader5)
-* Python Client can Change(take profit,stop loss) /Cancel/Open Orders → MT5
-* Python Close/Partly Close Positions → MT5
-* MT5 Execution info→ Python client
-* MT5 → Python Get all Open orders & Positions
-* MT5 → Python Get static account information
-* MT5 → Python Get dynamic account info like [balance, equity, margin, free margins]
-* MT5 → Python Get instrument information [pip value, max lot, tick size, tick value]
-* MT5 → Python Get last tick data [date, bid, ask, vol ]
-* MT5 → Python Get bar data [date, open, low, high, close, vol]
-* MT5 → Python Get last X ticks array[date, bid, ask, last,vol]
-* MT5 → Python Get last X bars array[date, open, low, high, close, vol]
-* MT5 → Python Get indicator data from MT5 to your script - coming soon!
+### 🐧 Linux Installation:
+Run your strategies on Linux through Wine: [Docker + Wine](https://hub.docker.com/r/scottyhardy/docker-wine/)
 
-## MT5 installation flow:
-![alt text](https://github.com/TheSnowGuru/PyTrader-python-mt5-trading-api-connector/blob/master/Pytrader_API_installation_MT5.png  "Installation flow")
+### 🔗 Get the Full Versions:
+- **MT5 Python**: [Get FULL Version](https://www.mql5.com/en/market/product/58259)
+- **MT4 Python**: [Get FULL Version](https://www.mql5.com/en/market/product/58254)
 
-# MT4 python 
-## installation flow:
-![alt text](https://github.com/TheSnowGuru/PyTrader-python-mt5-trading-api-connector/blob/master/Pytrader_API_installation_MT4.png  "Installation flow")
+### 📈 Join Our Best Trading Broker
+👉 [Join Our Best Supported Broker](https://track.deriv.be/_ftmJINnYNJE5TVC3w-F7AGNd7ZgqdRLk/4/)
 
-## myLib documentation
-See documentation  MT5 [here](https://github.com/TheSnowGuru/PyTrader-python-mt4-mt5-trading-api-connector-drag-n-drop/blob/master/Pytrader_API%20for%20MT5.pdf)
-See documentation  MT4 [here](https://github.com/TheSnowGuru/PyTrader-python-mt4-mt5-trading-api-connector-drag-n-drop/blob/master/Pytrader_API%20for%20MT4.pdf)
+### 🎉 NEW!
+Check out **JsTrader**: [New JSTrader version connecting MT4 & MT5 with JavaScript](https://github.com/TheSnowGuru/JsTrader)
 
-## Linux installation: 
-You can run your strategies on linux through wine.    
-Here is a ready docker + Wine:   [here](https://hub.docker.com/r/scottyhardy/docker-wine/)  
+### 💬 Questions?
+Join our Discord channel for support!  
+[![Join Discord](https://github.com/TheSnowGuru/PyTrader-python-mt4-mt5-trading-api-connector-drag-n-drop/blob/master/join.png)](https://discord.gg/wRMUNP8ERa)
 
-## Get the EA working for all instruments:
-## MT5 python ==> Get FULL Version [here](https://www.mql5.com/en/market/product/58259)
-## MT4 python ==> Get FULL Version [here](https://www.mql5.com/en/market/product/58254)
-
-# NEW!
-# JsTrader - [New JSTrader version connect MT4 & MT5 with JavaScript with drag and drop](https://github.com/TheSnowGuru/JsTrader) 
-
-
-
+Happy trading! 💰✨
