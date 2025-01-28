@@ -34,7 +34,7 @@ ERROR_DICT['00402'] = 'Instrument not exists for broker'
 ERROR_DICT['00501'] = 'No instrument defined/configured'
 
 ERROR_DICT['02001'] = 'Instrument not in demo'
-ERROR_DICT['02004'] = 'Unknown instrument for broker'
+ERROR_DICT['02002'] = 'Unknown instrument for broker'
 ERROR_DICT['02003'] = 'Unknown instrument for broker'
 ERROR_DICT['02004'] = 'Time out error'
 
@@ -70,9 +70,7 @@ ERROR_DICT['07005'] = 'Unknown order type'
 ERROR_DICT['07006'] = 'Wrong SL value' 
 ERROR_DICT['07007'] = 'Wrong TP value'
 ERROR_DICT['07008'] = 'Wrong volume value'
-ERROR_DICT['07009'] = 'Error opening market order'
-ERROR_DICT['07010'] = 'Error opening pending order'
-ERROR_DICT['07011'] = 'Unknown instrument for broker'
+ERROR_DICT['07009'] = 'Error opening / placing order'
 
 ERROR_DICT['07101'] = 'Trading not allowed'
 ERROR_DICT['07102'] = 'Position not found/error'
@@ -135,6 +133,7 @@ ERROR_DICT['99901'] = 'Undefined error'
 ERROR_DICT['99999'] = 'Dummy'
 
 
+
 class Pytrader_API:             
   
     def __init__(self):
@@ -147,7 +146,7 @@ class Pytrader_API:
         self.command_OK: bool = False
         self.command_return_error: str = ''
         self.debug: bool = False
-        self.version: str = 'V3.02a'
+        self.version: str = 'V3.02b'
         self.max_bars: int = 5000
         self.max_ticks: int = 5000
         self.timeout_value: int = 60
@@ -188,6 +187,7 @@ class Pytrader_API:
         """
 
         self.sock.close()
+        self.connected = False
         return True
 
     def Connect(self,
@@ -261,11 +261,11 @@ class Pytrader_API:
             x = dataString.split('^')
 
             if x[1] == 'OK':
-                self.timeout = True
+                self.timeout = False
                 self.command_OK = True
                 return True
             else:
-                self.timeout = False
+                self.timeout = True
                 self.command_return_error = ERROR_DICT['99900']
                 self.command_OK = True
                 return False
@@ -445,6 +445,7 @@ class Pytrader_API:
         returnDict['margin_free'] = float(x[5])
 
         self.command_OK = True
+
         return returnDict
 
     def Check_license(self) -> bool:
@@ -490,8 +491,8 @@ class Pytrader_API:
             Returns:
                 bool: True or False. True=allowed, False=not allowed
         """
-
-        self.command = 'F008^2^' + instrument + '^'
+        self.instrument = self.get_broker_instrument_name(self.instrument_name_universal)
+        self.command = 'F008^2^' + self.instrument + '^'
         self.command_return_error = ''
         ok, dataString = self.send_command(self.command)
 
@@ -617,7 +618,8 @@ class Pytrader_API:
             tick_value,
             swap_long,
             swap_short,
-            stop_level for sl and tp distance
+            stop_level for sl and tp distance,
+            contract size
         """
 
         self.command_return_error = ''
@@ -661,6 +663,7 @@ class Pytrader_API:
         returnDict['swap_long'] = float(x[7])
         returnDict['swap_short'] = float(x[8])
         returnDict['stop_level'] = int(x[9])
+        returnDict['contract_size'] = float(x[10])
 
         self.command_OK = True
         return returnDict
@@ -1086,12 +1089,12 @@ class Pytrader_API:
         self.command = 'F045^3^'
         for index in range (0, len(instrument_list), 1):
             _instr = self.get_broker_instrument_name(instrument_list[index].upper())
-            if (self.instrument == 'none'  or self.instrument == None):
+            if (_instr == 'none'  or _instr == None):
                 self.command_return_error = 'Instrument not in broker list'
                 self.command_OK = False
                 return None
             self.command = self.command + _instr + '$'
-        
+        #self.command = self.command[:-1]
         self.command = self.command + '^' + str(specific_bar_index) + '^' + str(timeframe) + '^'
         ok, dataString = self.send_command(self.command)
 
@@ -1287,6 +1290,32 @@ class Pytrader_API:
             rates = np.flipud(rates)
         return rates[:len(x)]
 
+    def Get_bars_from_date_to_date(self, 
+                                    instrument: str = 'EURUSD',
+                                    timeframe: int = 16408,
+                                    date_from: datetime = datetime(2021, 3, 1, tzinfo = pytz.timezone("Etc/UTC")),
+                                    date_to: datetime = datetime.now()) -> np.array:
+                                  
+        self.command_return_error = ''
+        self.instrument_name_universal = instrument.upper()
+        self.instrument = self.get_broker_instrument_name(self.instrument_name_universal)
+        if (self.instrument == 'none'  or self.instrument == None):
+            self.command_return_error = 'Instrument not in broker list'
+            self.command_OK = False
+            return None
+        self.date_from = date_from
+        self.date_to = date_to
+
+        if (date_from >= date_to):
+            self.command_return_error = 'From date is after to date'
+            self.command_OK = False
+            return None
+               
+
+        dt = np.dtype([('date', np.int64), ('open', np.float64), ('high', np.float64),
+                       ('low', np.float64), ('close', np.float64), ('volume', np.int32)])
+
+
     def Get_all_deleted_orders(self) -> pd.DataFrame:
         """
         Retrieves all deleted pending orders.
@@ -1318,7 +1347,42 @@ class Pytrader_API:
         if self.debug:
             print(resp)
 
-        if ok==True and resp[0:5]=="F065^" and resp[-1]=="!":
+        if not ok:
+            self.command_OK = False
+            return None
+
+
+        deleted_orders = self.create_empty_DataFrame(
+            self.columnsDeletedOrders, 'id')
+        
+        x = resp.split('^')
+        if (str(x[0]) != 'F065'):
+            self.command_return_error = ERROR_DICT['99901']
+            self.command_OK = False
+            return None
+
+        del x[0:2]
+        x.pop(-1)
+
+        for value in range(0, len(x)):
+            y = x[value].split('$')
+
+            rowOrder = {
+                    'ticket': int( y[0]), 'instrument': self.get_universal_instrument_name( (y[1])),  'order_type': str( y[2]),
+                    'magic_number': int(y[4]), 'volume': float( y[5]), 'open_price': float( y[6]), 'open_time': int(y[7]),
+                     'stop_loss': float( y[8]), 'take_profit': float( y[9]), 'delete_price': float(y[10]), 'delete_time': int( y[11]), 
+                     'comment': str( y[12])}
+
+            df_add = pd.DataFrame([rowOrder])
+            deleted_orders = pd.concat([deleted_orders, df_add], ignore_index=True)
+
+        deleted_orders.sort_values(by=['open_time'], ascending= True,inplace=True)
+
+        self.command_OK = True
+
+        return deleted_orders
+
+        """ if ok==True and resp[0:5]=="F065^" and resp[-1]=="!":
             nbr = resp[resp.index('^',3)+1:resp.index('^',5)]
             if int(nbr) != 0:
                 df = pd.read_table(io.StringIO(resp[resp.index('^',5)+1:-1]), sep='$', lineterminator='^',
@@ -1344,7 +1408,7 @@ class Pytrader_API:
                 x = resp.split('^')
                 self.command_return_error = ERROR_DICT['99901']
                 self.command_OK = False
-                return None 
+                return None  """
 
     def Get_deleted_orders_within_window(self,
                                  date_from: datetime = datetime(2021, 3, 25, tzinfo = pytz.timezone("Etc/UTC")),
@@ -1387,7 +1451,41 @@ class Pytrader_API:
         if self.debug:
             print(resp)
 
-        if ok==True and resp[0:5]=="F064^" and resp[-1]=="!":
+        if not ok:
+            self.command_OK = False
+            return None
+
+        deleted_orders = self.create_empty_DataFrame(
+            self.columnsDeletedOrders, 'id')
+        
+        x = resp.split('^')
+        if (str(x[0]) != 'F064'):
+            self.command_return_error = ERROR_DICT['99901']
+            self.command_OK = False
+            return None
+
+        del x[0:2]
+        x.pop(-1)
+
+        for value in range(0, len(x)):
+            y = x[value].split('$')
+
+            rowOrder = {
+                    'ticket': int( y[0]), 'instrument': self.get_universal_instrument_name( (y[1])),  'order_type': str( y[2]),
+                    'magic_number': int(y[4]), 'volume': float( y[5]), 'open_price': float( y[6]), 'open_time': int(y[7]),
+                     'stop_loss': float( y[8]), 'take_profit': float( y[9]), 'delete_price': float(y[10]), 'delete_time': int( y[11]), 
+                     'comment': str( y[12])}
+
+            df_add = pd.DataFrame([rowOrder])
+            deleted_orders = pd.concat([deleted_orders, df_add], ignore_index=True)
+
+        deleted_orders.sort_values(by=['open_time'], ascending= True,inplace=True)
+
+        self.command_OK = True
+
+        return deleted_orders
+
+        """ if ok==True and resp[0:5]=="F064^" and resp[-1]=="!":
             nbr = resp[resp.index('^',3)+1:resp.index('^',5)]
             if int(nbr) != 0:
                 df = pd.read_table(io.StringIO(resp[resp.index('^',5)+1:-1]), sep='$', lineterminator='^',
@@ -1413,7 +1511,7 @@ class Pytrader_API:
                 x = resp.split('^')
                 self.command_return_error = ERROR_DICT[str(x[3])]
                 self.command_OK = False
-                return None 
+                return None """ 
 
     def Get_all_orders(self) -> pd.DataFrame:
         
@@ -1444,8 +1542,37 @@ class Pytrader_API:
 
         if self.debug:
             print(resp)
+
+        if not ok:
+            self.command_OK = False
+            return None
+
+        orders = self.create_empty_DataFrame(self.columnsOpenOrders, 'id')
+        x = resp.split('^')
+        if str(x[0]) != 'F060':
+            self.command_return_error = ERROR_DICT['99901']
+            self.command_OK = False
+            return None
+
+        del x[0:2]
+        x.pop(-1)
+
+        for value in range(0, len(x)):
+            y = x[value].split('$')
+
+            rowOrder = {
+                    'ticket': int( y[0]), 'instrument': self.get_universal_instrument_name(str(y[1])), 'order_type': str(y[2]), 'magic_number': int(y[3]), 
+                    'volume': float( y[4]), 'open_price': float( y[5]), 'stop_loss': float( y[6]), 'take_profit': float( y[7]), 'comment': str(y[8])}
+            df_add = pd.DataFrame([rowOrder])
+            orders = pd.concat([orders, df_add], ignore_index=True)
+
+        orders.sort_values(by=['open_time'], ascending= True,inplace=True)
+
+        self.command_OK = True
+
+        return orders
         
-        if ok==True and resp[0:5]=="F060^" and resp[-1]=="!":
+        """ if ok==True and resp[0:5]=="F060^" and resp[-1]=="!":
             nbr = resp[resp.index('^',3)+1:resp.index('^',5)]
             if int(nbr) != 0:
                 df = pd.read_table(io.StringIO(resp[resp.index('^',5)+1:-1]), sep='$', lineterminator='^',
@@ -1471,7 +1598,7 @@ class Pytrader_API:
                 x = resp.split('^')
                 self.command_return_error = ERROR_DICT['99901']
                 self.command_OK = False
-                return None 
+                return None  """
     
     def Get_all_open_positions(self) -> pd.DataFrame:
 
@@ -1508,7 +1635,40 @@ class Pytrader_API:
         if self.debug:
             print(resp)
 
-        if ok==True and resp[0:5]=="F061^" and resp[-1]=="!":
+        if not ok:
+            self.command_OK = False
+            return None
+
+        positions = self.create_empty_DataFrame(
+            self.columnsOpenPositions, 'id')
+        x = resp.split('^')
+        if (str(x[0]) != 'F061'):
+            self.command_return_error = ERROR_DICT['99901']
+            self.command_OK = False
+            return None
+
+        del x[0:2]
+        x.pop(-1)
+        for value in range(0, len(x)):
+            y = x[value].split('$')
+
+            rowPosition = {
+                    'ticket': int( y[0]), 'instrument': self.get_universal_instrument_name( (y[1])), 'order_ticket': int(y[2]), 'position_type': str( y[3]),
+                    'magic_number': int(y[4]), 'volume': float( y[5]), 'open_price': float( y[6]), 'open_time': int(y[7]),
+                     'stop_loss': float( y[8]), 'take_profit': float( y[9]), 'comment': str(y[10]), 'profit': float( y[11]), 
+                     'swap': float( y[12]), 'commission': float( y[13])}
+            
+            df_add = pd.DataFrame([rowPosition])
+
+            positions = pd.concat([positions, df_add], ignore_index=True)
+        
+        positions.sort_values(by=['open_time'], ascending= True,inplace=True)
+
+        self.command_OK = True
+
+        return positions
+
+        """ if ok==True and resp[0:5]=="F061^" and resp[-1]=="!":
             nbr = resp[resp.index('^',3)+1:resp.index('^',5)]
             if int(nbr) != 0:
                 df = pd.read_table(io.StringIO(resp[resp.index('^',5)+1:-1]), sep='$', lineterminator='^',
@@ -1534,7 +1694,7 @@ class Pytrader_API:
                 x = resp.split('^')
                 self.command_return_error = ERROR_DICT['99901']
                 self.command_OK = False
-                return None  
+                return None  """ 
 
     def Get_closed_positions_within_window(self,
                                  date_from: datetime = datetime(2021, 3, 20, tzinfo = pytz.timezone("Etc/UTC")),
@@ -1581,8 +1741,38 @@ class Pytrader_API:
         if not ok:
             self.command_OK = False
             return None
+        
+        closed_positions = self.create_empty_DataFrame(
+            self.columnsClosedPositions, 'id')
+        
+        x = resp.split('^')
+        if str(x[0]) != 'F062':
+            self.command_return_error = ERROR_DICT['99901']
+            self.command_OK = False
+            return None
 
-        if ok==True and resp[0:5]=="F062^" and resp[-1]=="!":
+        del x[0:2]
+        x.pop(-1)
+
+        for value in range(0, len(x)):
+            y = x[value].split('$')
+            rowClosedPosition = {
+                    'position_ticket': int(y[0]), 'instrument': self.get_universal_instrument_name(str( y[1])), 'order_ticket': int( y[2]), 
+                    'position_type': str( y[3]), 'magic_number': int( y[4]), 'volume': float( y[5]), 'open_price': float( y[6]), 
+                    'open_time': int( y[7]), 'close_price': float(y[8]), 'close_time': int( y[9]), 'comment': str( y[10]), 
+                    'profit': float( y[11]), 'swap': float( y[12]), 'commission': float( y[13])}
+            
+            df_add = pd.DataFrame([rowClosedPosition])
+
+            positions = pd.concat([positions, df_add], ignore_index=True)
+            
+        closed_positions.sort_values(by=['open_time'], ascending= True,inplace=True)  
+
+        self.command_OK = True
+
+        return closed_positions
+
+        """ if ok==True and resp[0:5]=="F062^" and resp[-1]=="!":
             nbr = resp[resp.index('^',3)+1:resp.index('^',5)]
             if int(nbr) != 0:
                 df = pd.read_table(io.StringIO(resp[resp.index('^',5)+1:-1]), sep='$', lineterminator='^',
@@ -1608,7 +1798,7 @@ class Pytrader_API:
                 x = resp.split('^')
                 self.command_return_error = ERROR_DICT['99901']
                 self.command_OK = False
-                return None     
+                return None  """    
 
     def Get_all_closed_positions(self) -> pd.DataFrame:
         """ 
@@ -1640,6 +1830,10 @@ class Pytrader_API:
 
         self.command = 'F063^1^'
         ok, resp = self.send_command(self.command)
+        
+        if self.debug:
+            print(resp)
+
         if not ok:
             self.command_OK = False
             return None
@@ -1647,33 +1841,36 @@ class Pytrader_API:
         if self.debug:
             print(resp)
 
-        if ok==True and resp[0:5]=="F063^" and resp[-1]=="!":
-            nbr = resp[resp.index('^',3)+1:resp.index('^',5)]
-            if int(nbr) != 0:
-                df = pd.read_table(io.StringIO(resp[resp.index('^',5)+1:-1]), sep='$', lineterminator='^',
-                                header=None,
-                                names=np.array(self.columnsClosedPositions[1:])[:,0],
-                                dtype=self.columnsClosedPositions[1:]
-                ).fillna('')
-                # no time conversion
-                # df.open_time = pd.to_datetime(df.open_time, unit='s').dt.tz_localize(TZ_SERVER).dt.tz_convert(TZ_UTC)
-                # sort by open_time ascending
-                df.sort_values(by=['open_time'], ascending= True,inplace=True)
-                return df
-            else:
-                # return empty dataframe
-                return self.create_empty_DataFrame(
-                        self.columnsClosedPositions, 'id') 
-        else:
-            # error
-            if not ok:
-                self.command_OK = False
-                return None
-            else:
-                x = resp.split('^')
-                self.command_return_error = ERROR_DICT['99901']
-                self.command_OK = False
-                return None
+        closed_positions = self.create_empty_DataFrame(
+            self.columnsClosedPositions, 'id')
+        
+        x = resp.split('^')
+        if str(x[0]) != 'F063':
+            self.command_return_error = ERROR_DICT['99901']
+            self.command_OK = False
+            return None
+
+        del x[0:2]
+        x.pop(-1)
+
+        for value in range(0, len(x)):
+            y = x[value].split('$')
+            rowClosedPosition = {
+                    'ticket': int(y[0]), 'instrument': self.get_universal_instrument_name(str( y[1])), 'order_ticket': int( y[2]), 
+                    'position_type': str( y[3]), 'magic_number': int( y[4]), 'volume': float( y[5]), 'open_price': float( y[6]), 
+                    'open_time': int( y[7]), 'stop_loss': float((y[8])), 'take_profit': float((y[9])), 'close_price': float(y[10]), 
+                    'close_time': int( y[11]), 'comment': str( y[12]), 
+                    'profit': float( y[13]), 'swap': float( y[14]), 'commission': float( y[15])}
+            
+            df_add = pd.DataFrame([rowClosedPosition])
+
+            closed_positions = pd.concat([closed_positions, df_add], ignore_index=True)
+            
+        closed_positions.sort_values(by=['open_time'], ascending= True,inplace=True)  
+
+        self.command_OK = True
+
+        return closed_positions
 
     def Open_order(self,
                    instrument: str = '',
@@ -1700,6 +1897,7 @@ class Pytrader_API:
             stoploss: order stop loss price, actual price, so not relative to open price
             takeprofit: order take profit, actual price, so not relative to open price
             comment: order comment
+            market: true, must be in watch list
         Returns:
             int: ticket number. If -1, open order failed
         """
@@ -1734,13 +1932,14 @@ class Pytrader_API:
             self.command_return_error = ERROR_DICT[str(x[3])]
             self.command_OK = False
             self.order_return_message = ERROR_DICT[str(x[3])]
-            self.order_error = int(x[3])
+            self.order_error = int(x[4])
             return int(-1)
 
         self.command_OK = True
 
         if (int(x[1]) == 3):
             self.order_return_message = str(x[2])
+            self.order_error = int(x[4])
             return int(x[3])
 
     def Close_position_by_ticket(self,
@@ -2369,7 +2568,7 @@ class Pytrader_API:
     columnsOpenPositions = [
         ('id', int),
         ('ticket', int),
-        ('instrument', str),
+        ('instrument', float),
         ('order_ticket', int),
         ('position_type', str),
         ('magic_number', int),
