@@ -9,7 +9,7 @@ import os
 class Check_News():
 
     def __init__(self,
-                 url: str = 'http://cdn-nfs.faireconomy.media/ff_calendar_thisweek.xml',
+                 url: str = 'https://nfs.faireconomy.media/ff_calendar_thisweek.xml',
                  update_in_minutes: int = 240,
                  minutes_before_news: int = 480,
                  minutes_after_news: int = 60,
