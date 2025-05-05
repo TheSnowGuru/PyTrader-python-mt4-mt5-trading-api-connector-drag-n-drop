@@ -1178,6 +1178,8 @@ class Pytrader_API:
             return None
         
         self.nbrofticks = nbrofticks
+        if (self.nbrofticks > self.max_ticks):
+            self.nbrofticks = self.max_ticks
 
         dt = np.dtype([('date', np.int64), ('ask', np.float64), ('bid', np.float64), ('last', np.float64), ('volume', np.int32)])
 
